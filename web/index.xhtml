@@ -7,5 +7,25 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <ui:composition template="./templates/page_template.xhtml">
         <ui:param name="title" value="Shop"/>
+        <ui:define name="content">
+            <h:dataTable value="#{productController.products}" var="product">
+                <f:facet name="header" >All products</f:facet>
+                <h:column>
+                    <f:facet name="header">ID</f:facet>
+                    #{product.id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">name</f:facet>
+                    #{product.name}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Details</f:facet>
+                    <h:link value="more info" outcome="productDetail.xhtml">
+                        <!--Pass param named as id to productDetail.xhtml-->
+                        <f:param name="id" value="#{product.id}"/>
+                    </h:link>
+                </h:column>
+            </h:dataTable>
+        </ui:define>
 </ui:composition>
 </html>
